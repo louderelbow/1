@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>背不背单词</title>
+    <style>
+        frame {
+            border: none; /* 隐藏默认边框 */
+        }
+    </style>
+</head>
+
+<frameset rows="*,50">
+    <frameset cols="150,*">
+        <frameset rows="190,*">
+            <frame name="log1" src="log.html" scrolling="no"/>
+            <frame name="left1" src="left.html" scrolling="no"/>
+        </frameset>
+        <frame name="main1" src="main.html" scrolling="auto"/>
+    </frameset>
+    <frame name="under1" src="under.html" scrolling="no" />
+</frameset>
+
+<noframes>
+    <body>
+        <p>该浏览器不支持框架集！</p>
+    </body>
+</noframes>
+
+</html>

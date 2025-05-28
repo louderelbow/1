@@ -1,0 +1,59 @@
+# Code Citations
+
+## License: 未知
+https://github.com/ft7wsp/carAgencyClient/tree/a3820898d51310365abf1787208de6cd46483e6a/src/components/login/user.css
+
+```
+bottom: 20px;}
+        .form-group { margin-bottom: 15px;}
+        label { display: block; margin-bottom: 5px;}
+        input[type="text"], input[type="password"] { width: 100%; padding:
+```
+
+
+## License: MIT
+https://github.com/Ahmetz21/zezun/tree/4d2f2dc31312b2c58d3f23ab818cd7e50ab8eee5/login.html
+
+```
+.form-group { margin-bottom: 15px;}
+        label { display: block; margin-bottom: 5px;}
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; border-radius
+```
+
+
+## License: 未知
+https://github.com/LeonardoPerez05box/Biblioteca/tree/89afbaa3b89d28fd341cd1adc33dd12a5ad1701b/Biblioteca/Biblioteca/inicio.css
+
+```
+;}
+        label { display: block; margin-bottom: 5px;}
+        input[type="text"], input[type="password"] { width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;
+```
+
+
+## License: 未知
+https://github.com/soy-chrislo/notenu/tree/ff99a2b95acabb5828aa9910a5b964e9951a65bd/client/src/views/LoginView/LoginView.tsx
+
+```
+//localhost:3000/api/login', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            })
+            .then(res => res
+```
+
+
+## License: MIT
+https://github.com/pqmcgill/shh-super-secret-wedding-site/tree/51932fbc096e7cd6b177736395fd71334cc8c6d8/src/actions/user/index.js
+
+```
+{
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({username, password})
+            })
+            .then(res => res.json())
+            .then(data =>
+```
+

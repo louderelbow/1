@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+    <style>
+        body {
+            background: #fff7de;
+            text-align: center;
+            padding: 20px 0 0 0;
+            font-family: "微软雅黑", Arial, sans-serif;
+        }
+        #avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid #3498db;
+            margin-bottom: 10px;
+            object-fit: cover;
+        }
+        #username {
+            font-size: 15px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        #loginBtn {
+            padding: 6px 18px;
+            border: none;
+            border-radius: 5px;
+            background: #3498db;
+            color: #fff;
+            font-size: 15px;
+            cursor: pointer;
+        }
+        #loginBtn:hover {
+            background: #217dbb;
+        }
+    </style>
+</head>
+<body>
+    <img id="avatar" src="images/hui.jpg" alt="头像">
+    <div id="username"></div>
+    <button id="loginBtn">登录/注册</button>
+    <script>
+        function updateUserUI() {
+            const user = localStorage.getItem('currentUser');
+            const avatar = document.getElementById('avatar');
+            const usernameDiv = document.getElementById('username');
+            const btn = document.getElementById('loginBtn');
+            if (user) {
+                // 取头像
+                const users = JSON.parse(localStorage.getItem('users') || '{}');
+                avatar.src = users[user]?.avatar || 'images/hui.jpg';
+                usernameDiv.textContent = user;
+                btn.textContent = '退出';
+            } else {
+                avatar.src = 'images/hui.jpg';
+                usernameDiv.textContent = '';
+                btn.textContent = '登录/注册';
+            }
+        }
+        document.getElementById('loginBtn').onclick = function() {
+            const user = localStorage.getItem('currentUser');
+            if (user) {
+                localStorage.removeItem('currentUser');
+                updateUserUI();
+                parent.main1.location.href = 'main.html';
+            } else {
+                parent.main1.location.href = 'login_register.html';
+            }
+        };
+        updateUserUI();
+        window.addEventListener('storage', function(e){
+            if(e.key === 'currentUser') updateUserUI();
+        });
+    </script>
+</body>
+</html>

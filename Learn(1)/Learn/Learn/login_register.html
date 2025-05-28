@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>登录/注册</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc 0%, #cfdef3 100%);
+            font-family: "微软雅黑", Arial, sans-serif;
+        }
+        .main-box {
+            max-width: 350px;
+            margin: 60px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px rgba(52,152,219,0.10);
+            padding: 36px 28px 28px 28px;
+        }
+        .tab-btns {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 22px;
+        }
+        .tab-btns button {
+            flex: 1;
+            padding: 10px 0;
+            border: none;
+            border-radius: 8px 8px 0 0;
+            background: #f0f8ff;
+            color: #3498db;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+        .tab-btns button.active {
+            background: #3498db;
+            color: #fff;
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3498db;
+            letter-spacing: 2px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        label {
+            display: block;
+            margin-bottom: 6px;
+            color: #333;
+            font-size: 15px;
+        }
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 7px;
+            border: 1.5px solid #d0d7de;
+            font-size: 16px;
+            transition: border 0.2s;
+            box-sizing: border-box;
+            outline: none;
+            background: #f8fafc;
+        }
+        input[type="text"]:focus, input[type="password"]:focus {
+            border: 1.5px solid #3498db;
+            background: #f0f8ff;
+        }
+        input[type="file"] {
+            margin-top: 5px;
+        }
+        .avatar-preview {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .avatar-preview img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 2px solid #3498db;
+            object-fit: cover;
+            background: #f0f8ff;
+        }
+        .error {
+            color: #e74c3c;
+            text-align: center;
+            margin-bottom: 12px;
+            font-size: 15px;
+            font-weight: bold;
+            min-height: 18px;
+        }
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #3498db;
+            color: #fff;
+            border-radius: 7px;
+            font-size: 17px;
+            margin-top: 8px;
+            transition: background 0.2s;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        button[type="submit"]:hover {
+            background: #217dbb;
+        }
+        .logout-btn {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 7px;
+            font-size: 17px;
+            margin-top: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+        .logout-btn:hover {
+            background: #c0392b;
+        }
+        .profile-avatar {
+            display: block;
+            margin: 0 auto 16px auto;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            border: 2.5px solid #3498db;
+            object-fit: cover;
+            background: #f0f8ff;
+        }
+        .profile-name {
+            text-align: center;
+            font-size: 21px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 18px;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-box" id="mainBox"></div>
+    <script>
+        // 获取用户库
+        function getUsers() {
+            return JSON.parse(localStorage.getItem('users') || '{}');
+        }
+        function setUsers(users) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // 登录界面
+        function showLogin() {
+            document.getElementById('mainBox').innerHTML = `
+                <div class="tab-btns">
+                    <button class="active" onclick="showLogin()">登录</button>
+                    <button onclick="showRegister()">注册</button>
+                </div>
+                <h2>用户登录</h2>
+                <div class="error" id="err"></div>
+                <form onsubmit="login(event)">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input id="loginUser" type="text" placeholder="请输入用户名" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input id="loginPwd" type="password" placeholder="请输入密码" autocomplete="current-password">
+                    </div>
+                    <button type="submit">登录</button>
+                </form>
+            `;
+        }
+
+        // 注册界面
+        function showRegister() {
+            document.getElementById('mainBox').innerHTML = `
+                <div class="tab-btns">
+                    <button onclick="showLogin()">登录</button>
+                    <button class="active" onclick="showRegister()">注册</button>
+                </div>
+                <h2>用户注册</h2>
+                <div class="error" id="err"></div>
+                <form onsubmit="register(event)">
+                    <div class="form-group">
+                        <label>用户名</label>
+                        <input id="regUser" type="text" placeholder="请输入用户名" autocomplete="username">
+                    </div>
+                    <div class="form-group">
+                        <label>密码</label>
+                        <input id="regPwd" type="password" placeholder="请输入密码" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>确认密码</label>
+                        <input id="regPwd2" type="password" placeholder="请再次输入密码" autocomplete="new-password">
+                    </div>
+                    <div class="form-group">
+                        <label>头像</label>
+                        <input id="regAvatar" type="file" accept="image/*">
+                        <div class="avatar-preview" id="avatarPreview"></div>
+                    </div>
+                    <button type="submit">注册</button>
+                </form>
+            `;
+            document.getElementById('regAvatar').onchange = function(e){
+                const file = e.target.files[0];
+                if(file){
+                    const reader = new FileReader();
+                    reader.onload = function(evt){
+                        document.getElementById('avatarPreview').innerHTML = `<img src="${evt.target.result}">`;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            };
+        }
+
+        // 个人中心
+        function showProfile() {
+            const username = localStorage.getItem('currentUser');
+            if(!username) { showLogin(); return; }
+            let users = getUsers();
+            document.getElementById('mainBox').innerHTML = `
+                <img class="profile-avatar" src="${users[username].avatar}">
+                <div class="profile-name">${username}</div>
+                <button class="logout-btn" onclick="logout()">退出登录</button>
+            `;
+        }
+
+        // 注册
+        function register(e) {
+            e.preventDefault();
+            const username = document.getElementById('regUser').value.trim();
+            const password = document.getElementById('regPwd').value;
+            const password2 = document.getElementById('regPwd2').value;
+            const avatarInput = document.getElementById('regAvatar');
+            const err = document.getElementById('err');
+            if(!username || !password || !password2 || !avatarInput.files[0]){
+                err.textContent = '请填写完整信息并上传头像';
+                return;
+            }
+            if(password !== password2){
+                err.textContent = '两次密码输入不一致';
+                return;
+            }
+            let users = getUsers();
+            if(users[username]){
+                err.textContent = '用户名已存在';
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function(evt){
+                users[username] = { password, avatar: evt.target.result };
+                setUsers(users);
+                alert('注册成功，请登录');
+                showLogin();
+            };
+            reader.readAsDataURL(avatarInput.files[0]);
+        }
+
+        // 登录
+        function login(e) {
+            e.preventDefault();
+            const username = document.getElementById('loginUser').value.trim();
+            const password = document.getElementById('loginPwd').value;
+            const err = document.getElementById('err');
+            let users = getUsers();
+            if(users[username] && users[username].password === password){
+                localStorage.setItem('currentUser', username);
+                // 在新窗口中打开“Learn English”页面
+                openLearnEnglishInNewWindow();
+                return; // 防止后续代码执行
+            } else {
+                err.textContent = '用户名或密码错误';
+            }
+        }
+
+        // 在新窗口中打开“Learn English”页面
+        function openLearnEnglishInNewWindow() {
+            // 使用 window.open() 方法在新窗口中打开页面
+            const learnEnglishURL = 'Learn English.html';
+            const newWindow = window.open(learnEnglishURL, '_blank');
+            if (newWindow) {
+                newWindow.focus(); // 将新窗口置于最前端
+            } else {
+                alert('请允许弹出窗口以打开“Learn English”页面。');
+            }
+        }
+
+        // 页面初始化
+        if(localStorage.getItem('currentUser')) {
+            showProfile();
+        } else {
+            showLogin();
+        }
+
+        // 让全局可访问
+        window.showLogin = showLogin;
+        window.showRegister = showRegister;
+    </script>
+</body>
+</html>

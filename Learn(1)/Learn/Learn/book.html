@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>单词书</title>
+    <style>
+        body {
+            font-family: '微软雅黑', Arial, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            background: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+        th, td {
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background: #eaf6fb;
+            color: #4285f4;
+        }
+        tr:nth-child(even) {
+            background: #f8fafc;
+        }
+    </style>
+</head>
+<body>
+    <h1>单词书</h1>
+    <div id="wordbook"></div>
+    <script>
+        // 复制自word.html
+        const wordDatabase = {
+            easy: [
+        { "chinese": "苹果", "english": "apple" },
+        { "chinese": "香蕉", "english": "banana" },
+        { "chinese": "猫", "english": "cat" },
+        { "chinese": "狗", "english": "dog" },
+        { "chinese": "桌子", "english": "table" },
+        { "chinese": "椅子", "english": "chair" },
+        { "chinese": "学校", "english": "school" },
+        { "chinese": "书", "english": "book" },
+        { "chinese": "电脑", "english": "computer" },
+        { "chinese": "手机", "english": "phone" },
+        { "chinese": "妈妈", "english": "mom" },
+        { "chinese": "爸爸", "english": "dad" },
+        { "chinese": "姐姐", "english": "sister" },
+        { "chinese": "哥哥", "english": "brother" },
+        { "chinese": "红色", "english": "red" },
+        { "chinese": "蓝色", "english": "blue" },
+        { "chinese": "绿色", "english": "green" },
+        { "chinese": "黄色", "english": "yellow" },
+        { "chinese": "黑色", "english": "black" },
+        { "chinese": "白色", "english": "white" },
+        { "chinese": "早晨", "english": "morning" },
+        { "chinese": "下午", "english": "afternoon" },
+        { "chinese": "晚上", "english": "evening" },
+        { "chinese": "家", "english": "home" },
+        { "chinese": "房间", "english": "room" },
+        { "chinese": "门", "english": "door" },
+        { "chinese": "窗户", "english": "window" },
+        { "chinese": "床", "english": "bed" },
+        { "chinese": "沙发", "english": "sofa" },
+        { "chinese": "电视", "english": "TV" },
+        { "chinese": "水", "english": "water" },
+        { "chinese": "食物", "english": "food" },
+        { "chinese": "米饭", "english": "rice" },
+        { "chinese": "面包", "english": "bread" },
+        { "chinese": "牛奶", "english": "milk" },
+        { "chinese": "鸡蛋", "english": "egg" },
+        { "chinese": "肉", "english": "meat" },
+        { "chinese": "鱼", "english": "fish" },
+        { "chinese": "蔬菜", "english": "vegetable" },
+        { "chinese": "水果", "english": "fruit" },
+        { "chinese": "橙子", "english": "orange" },
+        { "chinese": "梨", "english": "pear" },
+        { "chinese": "草莓", "english": "strawberry" },
+        { "chinese": "葡萄", "english": "grape" },
+        { "chinese": "西瓜", "english": "watermelon" },
+        { "chinese": "桃子", "english": "peach" },
+        { "chinese": "李子", "english": "plum" },
+        { "chinese": "樱桃", "english": "cherry" },
+        { "chinese": "柠檬", "english": "lemon" },
+        { "chinese": "洋葱", "english": "onion" },
+        { "chinese": "土豆", "english": "potato" },
+        { "chinese": "番茄", "english": "tomato" },
+        { "chinese": "胡萝卜", "english": "carrot" },
+        { "chinese": "豌豆", "english": "pea" },
+        { "chinese": "玉米", "english": "corn" },
+        { "chinese": "豆芽", "english": "bean sprout" },
+        { "chinese": "辣椒", "english": "chilli" },
+        { "chinese": "大蒜", "english": "garlic" },
+        { "chinese": "生姜", "english": "ginger" },
+        { "chinese": "眼睛", "english": "eye" },
+        { "chinese": "耳朵", "english": "ear" },
+        { "chinese": "鼻子", "english": "nose" },
+        { "chinese": "嘴巴", "english": "mouth" },
+        { "chinese": "手", "english": "hand" },
+        { "chinese": "脚", "english": "foot" }
+    ],
+            medium: [
+        { "chinese": "态度", "english": "attitude" },
+        { "chinese": "能力", "english": "ability" },
+        { "chinese": "分析", "english": "analyze" },
+        { "chinese": "现象", "english": "phenomenon" },
+        { "chinese": "经济的", "english": "economic" },
+        { "chinese": "环境", "english": "environment" },
+        { "chinese": "文化", "english": "culture" },
+        { "chinese": "成功", "english": "success" },
+        { "chinese": "失败", "english": "failure" },
+        { "chinese": "幸福", "english": "happiness" },
+        { "chinese": "悲伤", "english": "sadness" },
+        { "chinese": "希望", "english": "hope" },
+        { "chinese": "梦想", "english": "dream" },
+        { "chinese": "想法", "english": "idea" },
+        { "chinese": "真理", "english": "truth" },
+        { "chinese": "发展", "english": "development" },
+        { "chinese": "进步", "english": "progress" },
+        { "chinese": "挑战", "english": "challenge" },
+        { "chinese": "机遇", "english": "opportunity" },
+        { "chinese": "风险", "english": "risk" },
+        { "chinese": "创新", "english": "innovation" },
+        { "chinese": "科技", "english": "technology" },
+        { "chinese": "信息", "english": "information" },
+        { "chinese": "资源", "english": "resource" },
+        { "chinese": "效率", "english": "efficiency" },
+        { "chinese": "质量", "english": "quality" },
+        { "chinese": "标准", "english": "standard" },
+        { "chinese": "管理", "english": "management" },
+        { "chinese": "领导", "english": "leadership" },
+        { "chinese": "团队", "english": "team" },
+        { "chinese": "合作", "english": "cooperation" },
+        { "chinese": "竞争", "english": "competition" },
+        { "chinese": "市场", "english": "market" },
+        { "chinese": "客户", "english": "customer" },
+        { "chinese": "产品", "english": "product" },
+        { "chinese": "服务", "english": "service" },
+        { "chinese": "价格", "english": "price" },
+        { "chinese": "销售", "english": "sale" },
+        { "chinese": "利润", "english": "profit" },
+        { "chinese": "成本", "english": "cost" },
+        { "chinese": "投资", "english": "investment" },
+        { "chinese": "金融", "english": "finance" },
+        { "chinese": "银行", "english": "bank" },
+        { "chinese": "货币", "english": "currency" },
+        { "chinese": "经济", "english": "economy" },
+        { "chinese": "贸易", "english": "trade" },
+        { "chinese": "工业", "english": "industry" },
+        { "chinese": "农业", "english": "agriculture" },
+        { "chinese": "能源", "english": "energy" },
+        { "chinese": "教育", "english": "education" },
+        { "chinese": "学习", "english": "study" },
+        { "chinese": "知识", "english": "knowledge" },
+        { "chinese": "技能", "english": "skill" },
+        { "chinese": "培训", "english": "training" },
+        { "chinese": "研究", "english": "research" },
+        { "chinese": "科学", "english": "science" },
+        { "chinese": "自然", "english": "nature" },
+        { "chinese": "环境", "english": "environment" },
+        { "chinese": "保护", "english": "protection" },
+        { "chinese": "污染", "english": "pollution" },
+        { "chinese": "健康", "english": "health" },
+        { "chinese": "医疗", "english": "medical" },
+        { "chinese": "医院", "english": "hospital" },
+        { "chinese": "医生", "english": "doctor" },
+        { "chinese": "护士", "english": "nurse" },
+        { "chinese": "药物", "english": "medicine" },
+        { "chinese": "疾病", "english": "disease" },
+        { "chinese": "预防", "english": "prevention" },
+        { "chinese": "治疗", "english": "treatment" }
+    ],
+            hard: [
+        { "chinese": "悖论", "english": "paradox" },
+        { "chinese": "一丝不苟的", "english": "scrupulous" },
+        { "chinese": "权宜之计", "english": "expedient" },
+        { "chinese": "缄默的", "english": "taciturn" },
+        { "chinese": "无礼的", "english": "impertinent" },
+        { "chinese": "使陶醉", "english": "enrapture" },
+        { "chinese": "博学的", "english": "erudite" },
+        { "chinese": "哲学", "english": "philosophy" },
+        { "chinese": "概念", "english": "concept" },
+        { "chinese": "原则", "english": "principle" },
+        { "chinese": "理论", "english": "theory" },
+        { "chinese": "意识形态", "english": "ideology" },
+        { "chinese": "逻辑", "english": "logic" },
+        { "chinese": "推理", "english": "reasoning" },
+        { "chinese": "伦理", "english": "ethics" },
+        { "chinese": "道德", "english": "morality" },
+        { "chinese": "操纵", "english": "manipulate" },
+        { "chinese": "转变", "english": "transform" },
+        { "chinese": "综合", "english": "synthesize" },
+        { "chinese": "分析", "english": "analyse" },
+        { "chinese": "批评", "english": "criticize" },
+        { "chinese": "评估", "english": "evaluate" },
+        { "chinese": "优先处理", "english": "prioritize" },
+        { "chinese": "谈判", "english": "negotiate" },
+        { "chinese": "融合", "english": "integration" },
+        { "chinese": "禁忌", "english": "taboo" },
+        { "chinese": "仪式", "english": "ritual" },
+        { "chinese": "偏见", "english": "prejudice" },
+        { "chinese": "歧视", "english": "discrimination" },
+        { "chinese": "陈规定型观念", "english": "stereotype" },
+        { "chinese": "抽象的", "english": "abstract" },
+        { "chinese": "复杂的", "english": "complex" },
+        { "chinese": "矛盾的", "english": "contradictory" },
+        { "chinese": "模糊的", "english": "ambiguous" },
+        { "chinese": "模糊不清的", "english": "vague" },
+        { "chinese": "不确定的", "english": "uncertain" },
+        { "chinese": "难以理解的", "english": "incomprehensible" },
+        { "chinese": "不可思议的", "english": "incredible" },
+        { "chinese": "不可想象的", "english": "unimaginable" },
+        { "chinese": "不合理的", "english": "unreasonable" },
+        { "chinese": "不现实的", "english": "unrealistic" },
+        { "chinese": "不一致的", "english": "inconsistent" },
+        { "chinese": "不连贯的", "english": "incoherent" },
+        { "chinese": "不完整的", "english": "incomplete" },
+        { "chinese": "不充分的", "english": "insufficient" },
+        { "chinese": "不适当的", "english": "inappropriate" },
+        { "chinese": "不成熟的", "english": "immature" },
+        { "chinese": "不耐烦的", "english": "impatient" },
+        { "chinese": "不道德的", "english": "immoral" },
+        { "chinese": "不公正的", "english": "unjust" },
+        { "chinese": "不公平的", "english": "unfair" },
+        { "chinese": "不平等的", "english": "unequal" },
+        { "chinese": "不稳定的", "english": "unstable" },
+        { "chinese": "不安全的", "english": "unsafe" },
+        { "chinese": "不健康的", "english": "unhealthy" },
+        { "chinese": "不快乐的", "english": "unhappy" },
+        { "chinese": "不满意的", "english": "dissatisfied" },
+        { "chinese": "不乐观的", "english": "pessimistic" },
+        { "chinese": "不自信的", "english": "insecure" },
+        { "chinese": "不信任的", "english": "suspicious" },
+        { "chinese": "不友好的", "english": "unfriendly" },
+        { "chinese": "不礼貌的", "english": "impolite" },
+        { "chinese": "不诚实的", "english": "dishonest" },
+        { "chinese": "不道德的", "english": "unethical" },
+        { "chinese": "不合法的", "english": "illegal" },
+        { "chinese": "不合规的", "english": "non-compliant" },
+        { "chinese": "不正常的", "english": "abnormal" },
+        { "chinese": "不常见的", "english": "uncommon" },
+        { "chinese": "不典型的", "english": "atypical" },
+        { "chinese": "不寻常的", "english": "unusual" },
+        { "chinese": "不奇怪的", "english": "unsurprising" }
+    ]
+        };
+
+        function renderTable(level, words) {
+            let html = `<h2>${level === 'easy' ? '简单' : level === 'medium' ? '中等' : '困难'}词汇</h2>`;
+            html += `<table><tr><th>中文</th><th>英文</th></tr>`;
+            words.forEach(word => {
+                html += `<tr><td>${word.chinese}</td><td>${word.english}</td></tr>`;
+            });
+            html += `</table>`;
+            return html;
+        }
+
+        let html = '';
+        html += renderTable('easy', wordDatabase.easy);
+        html += renderTable('medium', wordDatabase.medium);
+        html += renderTable('hard', wordDatabase.hard);
+
+        document.getElementById('wordbook').innerHTML = html;
+    </script>
+</body>
+</html>

@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小组成员介绍</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .subtitle {
+            font-size: 1.2rem;
+            color: #7f8c8d;
+        }
+        
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .tab {
+            padding: 10px 20px;
+            margin: 0 5px 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .tab.active {
+            background-color: #3498db;
+            color: white;
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: #ebf5fb;
+        }
+        
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
+        
+        .card.active {
+            display: block;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
+        .info-item {
+            margin-bottom: 20px;
+        }
+        
+        .info-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2980b9;
+        }
+        
+        .hobbies-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .hobby-item {
+            background-color: #ebf5fb;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: 1px solid #d6eaf8;
+        }
+        
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>原神大王</h1>
+            <p class="subtitle">一个充满活力与创造力的团队</p>
+        </header>
+        
+        <div class="tabs">
+            <div class="tab active" data-tab="member1">成员1</div>
+            <div class="tab" data-tab="member2">成员2</div>
+        </div>
+        
+        <!-- 成员1 -->
+        <section id="member1" class="card active">
+            <img src="./images/baiquan.jpg" alt="成员1照片" class="profile-img">
+            <h2>胡佰权</h2>
+            <div class="info-item">
+                <div class="info-title">个人信息：</div>
+                <ul>
+                    <li>性别：男</li>
+                    <br>
+                    <li>年龄：20岁</li>
+                    <br>
+                    <li>生日：2005年2月19日</li>
+                    <br>
+                    <li>地区：吉林省 长春市</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">联系方式：</div>
+                <ul>
+                    <li>电话：17790097959</li>
+                    <br>
+                    <li>邮箱：2625491614@qq.com</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">教育背景：</div>
+                <ul>
+                    <li>大学：吉林大学</li>
+                    <br>
+                    <li>学院：计算机科学与技术学院</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">技能：</div>
+                <ul>
+                    <li>编程语言：Python, Java, HTML/CSS/JavaScript</li>
+                    <br>
+                    <li>工具：Git, Visual Studio Code, IntelliJ IDEA</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">兴趣爱好：</div>
+                <div class="hobbies-list">
+                    <div class="hobby-item">唱</div>
+                    <div class="hobby-item">跳</div>
+                    <div class="hobby-item">RAP</div>
+                    <div class="hobby-item">篮球</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 成员2 -->
+        <section id="member2" class="card">
+            <img src="./images/penglang.jpg" alt="成员2照片" class="profile-img">
+            <h2>王鹏朗</h2>
+            <div class="info-item">
+                <div class="info-title">个人信息：</div>
+                <ul>
+                    <li>性别：男</li>
+                    <br>
+                    <li>年龄：21岁</li>
+                    <br>
+                    <li>生日：2005年9月22日</li>
+                    <br>
+                    <li>地区：吉林省 四平市</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">联系方式：</div>
+                <ul>
+                    <li>电话：18243430922</li>
+                    <br>
+                    <li>邮箱：3251983485@qq.com</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">教育背景：</div>
+                <ul>
+                    <li>大学：吉林大学</li>
+                    <br>
+                    <li>学院：计算机科学与技术学院</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">技能：</div>
+                <ul>
+                    <li>编程语言：C++,JavaScript</li>
+                    <br>
+                    <li>工具：Eclipse, Sublime Text</li>
+                </ul>
+            </div>
+            <div class="info-item">
+                <div class="info-title">兴趣爱好：</div>
+                <div class="hobbies-list">
+                    <div class="hobby-item">唱</div>
+                    <div class="hobby-item">跳</div>
+                    <div class="hobby-item">RAP</div>
+                    <div class="hobby-item">篮球</div>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <p>&copy; 2025 小组成员介绍</p>
+        </footer>
+    </div>
+
+    <script>
+        // 获取所有标签和卡片
+        const tabs = document.querySelectorAll('.tab');
+        const cards = document.querySelectorAll('.card');
+
+        // 为每个标签添加点击事件
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // 移除所有标签的 active 类
+                tabs.forEach(t => t.classList.remove('active'));
+                // 为当前点击的标签添加 active 类
+                tab.classList.add('active');
+                
+                // 隐藏所有卡片
+                cards.forEach(card => card.classList.remove('active'));
+                // 显示对应卡片
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
